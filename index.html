@@ -16,17 +16,26 @@
         #nav-bar {
             display: flex;
             padding: 10px;
-            background: #333;
+            background: #222;
             color: white;
         }
         input {
             flex: 1;
-            padding: 5px;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 5px;
         }
         button {
-            padding: 5px;
-            margin-left: 5px;
+            padding: 8px 15px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
         }
         iframe {
             flex: 1;
@@ -38,7 +47,7 @@
 <body>
 
     <div id="nav-bar">
-        <input type="text" id="url" placeholder="Enter URL (e.g., google.com)">
+        <input type="text" id="url" placeholder="Enter website URL (e.g., google.com)">
         <button onclick="loadPage()">Go</button>
     </div>
 
@@ -50,7 +59,10 @@
             if (!urlInput.startsWith("http")) {
                 urlInput = "https://" + urlInput;
             }
-            document.getElementById("browser-window").src = urlInput;
+
+            // Using a proxy to bypass iframe restrictions
+            let proxyUrl = "https://corsproxy.io/?";
+            document.getElementById("browser-window").src = proxyUrl + encodeURIComponent(urlInput);
         }
     </script>
 
