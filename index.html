@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Web Browser</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        #nav-bar {
+            display: flex;
+            padding: 10px;
+            background: #333;
+            color: white;
+        }
+        input {
+            flex: 1;
+            padding: 5px;
+        }
+        button {
+            padding: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        iframe {
+            flex: 1;
+            width: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="nav-bar">
+        <input type="text" id="url" placeholder="Enter URL (e.g., google.com)">
+        <button onclick="loadPage()">Go</button>
+    </div>
+
+    <iframe id="browser-window"></iframe>
+
+    <script>
+        function loadPage() {
+            let urlInput = document.getElementById("url").value;
+            if (!urlInput.startsWith("http")) {
+                urlInput = "https://" + urlInput;
+            }
+            document.getElementById("browser-window").src = urlInput;
+        }
+    </script>
+
+</body>
+</html>
